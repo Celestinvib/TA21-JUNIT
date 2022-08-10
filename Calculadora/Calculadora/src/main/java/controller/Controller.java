@@ -5,17 +5,20 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import calculadora.Calculadora;
 import graphicApp.GraphicApp;
 
 
 public class Controller {
 	
 	private GraphicApp app;
+	private Calculadora calc;
 
 	/** Constructor */
 	public Controller() {
 		
 		this.app = new GraphicApp();
+		this.calc = new Calculadora();
 	
 		
 		// Apply actions to the buttons

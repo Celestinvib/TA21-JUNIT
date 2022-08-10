@@ -58,6 +58,7 @@ public class GraphicApp extends JFrame{
 		setTitle("Calculadora"); // PopUp window title
 		setBounds(700, 200, 400, 600); // X Y coordinates of the application and its height and length
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
 		
 		Panel panel = new Panel();
 		getContentPane().add(panel, BorderLayout.CENTER);

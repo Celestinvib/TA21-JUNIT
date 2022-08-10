@@ -3,7 +3,7 @@ package TA21.Calculadora;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-import Calculadora.Calculadora;
+import calculadora.Calculadora;
 
 class AppTest {
 	
