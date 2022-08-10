@@ -1,13 +1,11 @@
 package TA21.Calculadora;
 
-/**
- * Hello world!
- *
- */
+import graphicApp.GraphicApp;
+
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+    	GraphicApp window = new GraphicApp();
     }
 }
