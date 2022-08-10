@@ -1,4 +1,4 @@
-package Calculadora;
+package calculadora;
 
 public class Calculadora {
 	
@@ -145,10 +145,73 @@ public class Calculadora {
 	* 1 Split a
 	* 
 	* @param a
-	* @return esult of 1/a
+	* @return result of 1/a
 	*/
 	public double oneSplitNum(double a) {
 	    return split(1,a);
 	}
 	
+	/**
+	* Change the sign of the num
+	* 
+	* @param a
+	* @return num with the state changed
+	*/
+	public double changeSign(double a) {
+		if (a > 0) {
+			return -a;
+		}else {
+			return -a * -1;
+		}
+	}
+	
+	/**
+	* Converts the num to decimal
+	* 
+	* return the num with a doc at the end
+	*/
+	public double addDecimal(double num) {
+		String numWDecimal = String.valueOf(num);
+		numWDecimal += ".";
+		return Double.parseDouble(numWDecimal);	
+	}
+	
+	//CHANGE THIS TWO METHODS  (DELETE)
+	
+//	/**
+//	* Delete the last value of the num
+//	* 
+//	*/
+//	public double deleteLast() {
+//		
+//	}
+//	
+//	/**
+//	* Add a value to the num in the last position
+//	* 
+//	*/
+//	public double addLast() {
+//		
+//	}
+//	
+	/**
+	* Clear all the fields of the calc
+	* 
+	* return 0 the new value of num
+	*/
+	public double clearCurrentNum() {
+		return 0;	
+	}
+	
+	/**
+	* Clear all the fields of the calc
+	* 
+	* @param a
+	* @return result of 1/a
+	*/
+	public void clear() {
+		num1 = 0;
+		num2 = 0;
+		op = "";	
+	}
 }
