@@ -157,7 +157,7 @@ public class Calculadora {
 	* @param a
 	* @return num with the state changed
 	*/
-	public double changeSign(double a) {
+	public double changeSign(double a) { // NO LO USO
 		if (a > 0) {
 			return -a;
 		}else {
@@ -170,7 +170,7 @@ public class Calculadora {
 	* 
 	* return the num with a doc at the end
 	*/
-	public double addDecimal(double num) {
+	public double addDecimal(double num) {// NO LO USO
 		String numWDecimal = String.valueOf(num);
 		numWDecimal += ".";
 		return Double.parseDouble(numWDecimal);	
@@ -199,7 +199,7 @@ public class Calculadora {
 	* 
 	* return 0 the new value of num
 	*/
-	public double clearCurrentNum() {
+	public double clearCurrentNum() {// NO LO USO
 		return 0;	
 	}
 	
@@ -209,7 +209,7 @@ public class Calculadora {
 	* @param a
 	* @return result of 1/a
 	*/
-	public void clear() {
+	public void clear() {// NO LO USO
 		num1 = 0;
 		num2 = 0;
 		op = "";	

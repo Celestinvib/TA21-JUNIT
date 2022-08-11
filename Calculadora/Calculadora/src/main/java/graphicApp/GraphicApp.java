@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
 import java.awt.Panel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -11,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
+import javax.swing.JLabel;
+import java.awt.Component;
 
 
 
@@ -51,6 +55,8 @@ public class GraphicApp extends JFrame{
 	public JButton btnOpClearCurrentNum;
 	public JButton btnOpClear;
 	public JButton btnOpSupp;
+	public JLabel screenHistory;
+	public JLabel screen;
 	
 	public GraphicApp() {
 		
@@ -213,6 +219,19 @@ public class GraphicApp extends JFrame{
 		panel_1.setBackground(UIManager.getColor("CheckBox.light"));
 		panel_1.setBounds(10, 11, 368, 116);
 		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		screen = new JLabel("");
+		screen.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		screen.setBounds(10, 57, 348, 48);
+		screen.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel_1.add(screen);
+		
+		screenHistory = new JLabel("");
+		screenHistory.setHorizontalAlignment(SwingConstants.RIGHT);
+		screenHistory.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		screenHistory.setBounds(10, 21, 348, 35);
+		panel_1.add(screenHistory);
 	}
 
 	/** Getters and Setters */
@@ -552,8 +571,6 @@ public class GraphicApp extends JFrame{
 	public void setBtnOpSupp(JButton btnOpSupp) {
 		this.btnOpSupp = btnOpSupp;
 	}
-	
-	
 }
 
  
