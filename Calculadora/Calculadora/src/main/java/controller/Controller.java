@@ -243,17 +243,19 @@ public class Controller {
 		
 		app.getBtnOpMod().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				app.screen.setText(app.screen.getText()+" "+app.getBtnOpMod().getText()+" ");
-				app.screenHistory.setText(app.screen.getText());
-				app.screen.setText("");
-				calc.setOp(app.getBtnOpMod().getText());
+				if(calc.getOp() != null) { //If the user is setting the 2º operator we proceed to do the calculator mod function
+					calc.setNum2(calc.split(calc.getNum2(), 100)); 
+					app.screen.setText(String.valueOf(calc.getNum2()));
+					app.screenHistory.setText(app.screenHistory.getText() +" "+app.screen.getText());
+					app.screen.setText("");
+				}
 			}
 		});
 		
 		app.getBtnOp1SubstractX().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				calc.setR(calc.oneSplitNum(Double.parseDouble(app.screen.getText())));
-				app.screen.setText(app.screen.getText()+" "+app.getBtnOp1SubstractX().getText()+" ");
+				app.screen.setText("1/"+app.screen.getText());
 				app.screenHistory.setText(app.screen.getText());
 				app.screen.setText("");
 				calc.setOp(app.getBtnOp1SubstractX().getText());
@@ -297,12 +299,22 @@ public class Controller {
 		
 		app.getBtnOpChangeSign().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				app.screen.setText("-"+app.screen.getText());
-				if(calc.getOp() == null) {
-					calc.setNum1(Integer.parseInt(app.screen.getText()));
-				}else {
-					calc.setNum2(Integer.parseInt(app.screen.getText()));
+				String curentNum = app.screen.getText();
+				
+				if(curentNum.charAt(0) != '-') { //If the current num is not negative we convert it
+					curentNum = "-"+curentNum;
+				}else { //if it is we convert it to positive
+					curentNum = curentNum.substring(1);
 				}
+				
+				app.screen.setText(curentNum);
+
+				if(calc.getOp() == null) {
+					calc.setNum1(Integer.parseInt(curentNum));
+				}else {
+					calc.setNum2(Integer.parseInt(curentNum));
+				}
+				
 			}
 		});
 		
@@ -310,10 +322,15 @@ public class Controller {
 			public void actionPerformed(ActionEvent e) {
 				if(!app.screen.getText().equals("")) {
 					app.screen.setText(app.screen.getText().substring(0, app.screen.getText().length() - 1));
+					
 					if(calc.getOp() == null) {
-						calc.setNum1(Integer.parseInt(app.screen.getText()));
+						if(!app.screen.getText().equals("")) { //If exists a current num , set the value to op1  
+							calc.setNum1(Integer.parseInt(app.screen.getText()));
+						}
 					}else {
+						if(!app.screen.getText().equals("")) {
 						calc.setNum2(Integer.parseInt(app.screen.getText()));
+						}
 					}
 				}
 			}
@@ -321,17 +338,32 @@ public class Controller {
 		
 		app.getBtnOpAddDecimal().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				app.screen.setText(app.screen.getText()+".");
+				
+				boolean alreadyDecimal = false;
+				String currentNum = app.screen.getText();
+				
+				//Check if the current num is already a decimal in case it is this function won't transform it to decimal
+				for (int i = 0; i < currentNum.length(); i++) {
+					if(currentNum.charAt(i) == '.') {
+						alreadyDecimal = true;
+						break;
+					}
+				}
+				
+				if(!alreadyDecimal) { //If the current is not a decimal we add . to the last digit of the currenNum
+					app.screen.setText(app.screen.getText()+".");
+				}
 			}
 		});
 		
 		app.getBtnOpClearCurrentNum().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Clear the current number showed in the screen
 				app.screen.setText("");
 				if(calc.getOp() == null) {
-					calc.setNum1(Double.parseDouble(null));
+					calc.setNum1(Double.NaN); 
 				}else {
-					calc.setNum2(Double.parseDouble(null));
+					calc.setNum2(Double.NaN);
 				}
 			}
 		});
@@ -350,24 +382,34 @@ public class Controller {
 					app.screenHistory.setText(app.screenHistory.getText() + app.screen.getText() + " " + app.getBtnOpCalcResult().getText());
 				}
 				newOperation = true;
-				String operation = calc.getOp();
-				switch (operation) {
-				case "+":
-					calc.setR(calc.add(calc.getNum1(), calc.getNum2()));
-					break;
-				case "-":
-					calc.setR(calc.susbtract(calc.getNum1(), calc.getNum2()));
-					break;
-				case "÷":
-					calc.setR(calc.split(calc.getNum1(), calc.getNum2()));
-					break;
-				case "X":
-					calc.setR(calc.multiply(calc.getNum1(), calc.getNum2()));
-					break;
-
-				default:
-					break;
-				}
+				
+//				if(String.valueOf(calc.getNum2()) != null) {
+					
+					String operation = calc.getOp();
+					switch (operation) {
+					case "+":
+						calc.setR(calc.add(calc.getNum1(), calc.getNum2()));
+						break;
+					case "-":
+						calc.setR(calc.susbtract(calc.getNum1(), calc.getNum2()));
+						break;
+					case "÷":
+						calc.setR(calc.split(calc.getNum1(), calc.getNum2()));
+						break;
+					case "X":
+						calc.setR(calc.multiply(calc.getNum1(), calc.getNum2()));
+						break;
+	
+					default:
+						break;
+					}
+					
+//				}else {
+//					
+//					app.screenHistory.setText(String.valueOf(calc.getNum1())+"=");
+//					calc.setR(calc.getNum1());
+//				}
+				
 				app.screen.setText(String.valueOf(calc.getR()));
 			}
 		});
