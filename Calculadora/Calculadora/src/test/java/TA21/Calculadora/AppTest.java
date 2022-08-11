@@ -56,6 +56,14 @@ class AppTest {
 	}
 	
 	@Test
+	public void testOneSplitNum() {
+		Calculadora calc = new Calculadora();
+		double r = calc.oneSplitNum(8);
+		double esperado = 0.125;
+		assertEquals(esperado, r);	
+	}
+	
+	@Test
 	public void testSetGetNum1() {
 		Calculadora calc = new Calculadora();
 		calc.setNum1(2);
