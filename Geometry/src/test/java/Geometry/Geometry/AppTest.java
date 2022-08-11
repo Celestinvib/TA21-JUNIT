@@ -7,6 +7,47 @@ import dto.Geometria;
 
 class AppTest {
 	
+	@Test 	
+	public void testConstructorGeometria() {
+		Geometria geo = new Geometria();
+		
+		int rId= geo.getId();
+		int esperadoId = 9;		
+		String rNombre = geo.getNom();
+		String esperadoNombre = "Default";	
+		
+		assertEquals(esperadoId,rId);
+		assertEquals(esperadoNombre,rNombre);
+	}
+	
+	@Test 	
+	public void testConstructor2Geometria() {
+		Geometria geo = new Geometria(2);
+		
+		int rId= geo.getId();
+		String rNombre = geo.getNom();
+		String esperadoNombre = "Circulo";	
+		
+		assertEquals(2,rId);
+		assertEquals(esperadoNombre,rNombre);
+	}
+	
+	@Test
+	public void testareacuadrado() {
+		int r = Geometria.areacuadrado(6);
+		int esperado = 36 ;
+		assertEquals(esperado, r);	
+
+	}
+	
+	@Test
+	public void testareaCirculo() {
+		double r = Geometria.areaCirculo(2);
+		double esperado = 12.5664 ;
+		assertEquals(esperado, r);	
+
+	}
+
 	@Test
 	public void testAreaTriangulo() {
 		
@@ -118,5 +159,5 @@ class AppTest {
 		String esperado = "Geometria [id=9, nom=Default, area=0.0]";
 		assertEquals(esperado, resultado);
 	}
-
+	
 }
