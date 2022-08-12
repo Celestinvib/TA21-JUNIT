@@ -11,6 +11,7 @@ import graphicApp.GraphicApp;
 
 public class Controller {
 	
+	// Attributs
 	private GraphicApp app;
 	private Calculadora calc;
 	private boolean newOperation = false;
@@ -28,21 +29,29 @@ public class Controller {
 	
 	/**
 	 * Method that adds listeners to the buttons in the graphic part and the actions that they do
-	 * 
 	 */
 	public void buttonCalcActions() {
 		
 		
-		//Listeners Jbuttons (Nums)
+		// Listeners Jbuttons (Nums)
+		
+		// Button Number 0
 		app.getBtnNum0().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(newOperation) {
+				
+				// If you just did an operation and you click another number this will reset the calculator and write on the screen the number you just pressed
+				if(newOperation) { 
 					newOperation = false;
 					app.screen.setText("");
 					app.screenHistory.setText("");
 					calc = new Calculadora();
 				}
+				
+				// Writes the number of the button on the screen and if there is already a number, adds it after
 				app.screen.setText(app.screen.getText()+app.btnNum0.getText());
+				
+				// If there is no 'op' attribut on the calc yet, means that you are writing the 1st number, and will save it on the calc object like that
+				// otherwise, will save it on the 2nd number
 				if(calc.getOp() == null) {
 					calc.setNum1(Double.parseDouble(app.screen.getText()));
 				}else {
@@ -51,6 +60,7 @@ public class Controller {
 			}
 		});
 		
+		// Button Number 1
 		app.getBtnNum1().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(newOperation) {
@@ -68,6 +78,7 @@ public class Controller {
 			}
 		});
 		
+		// Button Number 2
 		app.getBtnNum2().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(newOperation) {
@@ -85,6 +96,7 @@ public class Controller {
 			}
 		});
 		
+		// Button Number 3
 		app.getBtnNum3().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(newOperation) {
@@ -102,6 +114,7 @@ public class Controller {
 			}
 		});
 		
+		// Button Number 4
 		app.getBtnNum4().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(newOperation) {
@@ -119,6 +132,7 @@ public class Controller {
 			}
 		});
 		
+		// Button Number 5
 		app.getBtnNum5().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(newOperation) {
@@ -136,6 +150,7 @@ public class Controller {
 			}
 		});
 		
+		// Button Number 6
 		app.getBtnNum6().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(newOperation) {
@@ -153,6 +168,7 @@ public class Controller {
 			}
 		});
 		
+		// Button Number 7
 		app.getBtnNum7().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(newOperation) {
@@ -170,6 +186,7 @@ public class Controller {
 			}
 		});		
 		
+		// Button Number 8
 		app.getBtnNum8().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(newOperation) {
@@ -187,6 +204,7 @@ public class Controller {
 			}
 		});	
 		
+		// Button Number 9
 		app.getBtnNum9().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(newOperation) {
@@ -204,16 +222,25 @@ public class Controller {
 			}
 		});	
 		
-		//Listeners Jbuttons (Operations)	
+		//Listeners Jbuttons (Operations)
+		
+		// Button Add operation
 		app.getBtnOpAdd().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				// Adds the symbol of the operation pressed, and puts the chain on the top label, which is the history
 				app.screen.setText(app.screen.getText()+" "+app.btnOpAdd.getText()+" ");
 				app.screenHistory.setText(app.screen.getText());
+				
+				// Clears the main label where the new number will be writed
 				app.screen.setText("");
+				
+				// Updates the attribut on the calc object
 				calc.setOp(app.btnOpAdd.getText());
 			}
 		});
 		
+		// Button Substract operation
 		app.getBtnOpSubstract().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				app.screen.setText(app.screen.getText()+" "+app.getBtnOpSubstract().getText()+" ");
@@ -223,6 +250,7 @@ public class Controller {
 			}
 		});
 
+		// Button Multiply operation
 		app.getBtnOpMultiply().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				app.screen.setText(app.screen.getText()+" "+app.getBtnOpMultiply().getText()+" ");
@@ -232,6 +260,7 @@ public class Controller {
 			}
 		});
 		
+		// Button Divide operation
 		app.getBtnOpDevide().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				app.screen.setText(app.screen.getText()+" "+app.getBtnOpDevide().getText()+" ");
@@ -241,6 +270,7 @@ public class Controller {
 			}
 		});
 		
+		// Button % operation
 		app.getBtnOpMod().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(calc.getOp() != null) { //If the user is setting the 2º operator we proceed to do the calculator mod function
@@ -252,8 +282,10 @@ public class Controller {
 			}
 		});
 		
+		// Button 1/X operation
 		app.getBtnOp1SubstractX().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Gets the number introduced, adds the symbol, writes it on the history label, calcs the result and shows it on the main label
 				calc.setR(calc.oneSplitNum(Double.parseDouble(app.screen.getText())));
 				app.screen.setText("1/"+app.screen.getText());
 				app.screenHistory.setText(app.screen.getText());
@@ -267,8 +299,10 @@ public class Controller {
 			}
 		});
 		
+		// Button ^2 operation
 		app.getBtnOpRaisedTo().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Gets the number introduced, adds the symbol, writes it on the history label, calcs the result and shows it on the main label
 				calc.setR(calc.raisedTo(Double.parseDouble(app.screen.getText())));
 				app.screen.setText(app.screen.getText()+" "+app.getBtnOpRaisedTo().getText()+" ");
 				app.screenHistory.setText(app.screen.getText());
@@ -282,8 +316,10 @@ public class Controller {
 			}
 		});
 		
+		// Button √ operation
 		app.getBtnSquareRoot().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Gets the number introduced, adds the symbol, writes it on the history label, calcs the result and shows it on the main label
 				calc.setR(calc.squareRoot(Double.parseDouble(app.screen.getText())));
 				app.screen.setText(app.screen.getText()+" "+app.getBtnSquareRoot().getText()+" ");
 				app.screenHistory.setText(app.screen.getText());
@@ -297,6 +333,7 @@ public class Controller {
 			}
 		});
 		
+		// Button converts negative and positive numbers to their opposites -/+
 		app.getBtnOpChangeSign().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String curentNum = app.screen.getText();
@@ -318,8 +355,10 @@ public class Controller {
 			}
 		});
 		
+		// Button Supr
 		app.getBtnOpSupp().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Deletes the last number introduced
 				if(!app.screen.getText().equals("")) {
 					app.screen.setText(app.screen.getText().substring(0, app.screen.getText().length() - 1));
 					
@@ -336,6 +375,7 @@ public class Controller {
 			}
 		});
 		
+		// Button to add the '.' for decimal numbers
 		app.getBtnOpAddDecimal().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -356,6 +396,7 @@ public class Controller {
 			}
 		});
 		
+		// Button 'CE'
 		app.getBtnOpClearCurrentNum().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Clear the current number showed in the screen
@@ -368,16 +409,20 @@ public class Controller {
 			}
 		});
 		
+		// Button 'C'
 		app.getBtnOpClear().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Clears everything, its a reset
 				app.screen.setText("");
 				app.screenHistory.setText("");
 				calc = new Calculadora();
 			}
 		});
 		
+		// Button '='
 		app.getBtnOpCalcResult().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Updates the history label with the '=' symbol
 				if(!newOperation) {
 					app.screenHistory.setText(app.screenHistory.getText() + app.screen.getText() + " " + app.getBtnOpCalcResult().getText());
 				}
@@ -385,6 +430,7 @@ public class Controller {
 				
 //				if(String.valueOf(calc.getNum2()) != null) {
 					
+				// 'Switch' to calc the operations that requires of 2 numbers and update the result attribut for calc object
 					String operation = calc.getOp();
 					switch (operation) {
 					case "+":
@@ -410,6 +456,7 @@ public class Controller {
 //					calc.setR(calc.getNum1());
 //				}
 				
+				// Shows in the screen the result
 				app.screen.setText(String.valueOf(calc.getR()));
 			}
 		});
