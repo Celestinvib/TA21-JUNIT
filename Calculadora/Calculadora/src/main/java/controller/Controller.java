@@ -427,9 +427,7 @@ public class Controller {
 					app.screenHistory.setText(app.screenHistory.getText() + app.screen.getText() + " " + app.getBtnOpCalcResult().getText());
 				}
 				newOperation = true;
-				
-//				if(String.valueOf(calc.getNum2()) != null) {
-					
+									
 				// 'Switch' to calc the operations that requires of 2 numbers and update the result attribut for calc object
 					String operation = calc.getOp();
 					switch (operation) {
@@ -450,11 +448,6 @@ public class Controller {
 						break;
 					}
 					
-//				}else {
-//					
-//					app.screenHistory.setText(String.valueOf(calc.getNum1())+"=");
-//					calc.setR(calc.getNum1());
-//				}
 				
 				// Shows in the screen the result
 				app.screen.setText(String.valueOf(calc.getR()));
